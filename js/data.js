@@ -1,13 +1,13 @@
 // ===== Firebase 설정 =====
 // Firebase 콘솔(console.firebase.google.com) → 프로젝트 설정 → 내 앱 → firebaseConfig 복사
 const FIREBASE_CONFIG = {
-  apiKey: "여기에-입력",
-  authDomain: "여기에-입력.firebaseapp.com",
-  databaseURL: "https://여기에-입력-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "여기에-입력",
-  storageBucket: "여기에-입력.firebasestorage.app",
-  messagingSenderId: "여기에-입력",
-  appId: "여기에-입력"
+  apiKey: "AIzaSyAyF8xRBieCqNB7RoJjiHK0SpEKZg7HMP4",
+  authDomain: "busanmade-81bcd.firebaseapp.com",
+  databaseURL: "https://busanmade-81bcd-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "busanmade-81bcd",
+  storageBucket: "busanmade-81bcd.firebasestorage.app",
+  messagingSenderId: "312047022134",
+  appId: "1:312047022134:web:04299feaecc90fb9322897"
 };
 // ================================
 
