@@ -218,8 +218,8 @@
   $("store-form").addEventListener("submit", e => {
     e.preventDefault();
     const data = readForm();
-    if (!data.name || !data.address) {
-      alert("이름과 주소는 필수입니다.");
+    if (!data.name) {
+      alert("이름은 필수입니다.");
       return;
     }
     if (!isUnifiedGroup(data.group) && !FOOD_CATEGORIES.includes(data.category)) {
