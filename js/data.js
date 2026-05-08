@@ -136,9 +136,10 @@ const BM = {
   },
 
   add(store) {
-    store.id = "s" + Date.now();
+    const ref = _STORES_REF.push();
+    store.id = ref.key;
     BM._cache.push(store);
-    _STORES_REF.child(store.id).set(store).catch(BM._onError);
+    ref.set(store).catch(BM._onError);
     return store;
   },
 
