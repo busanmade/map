@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="부산 맛집 순위, 한눈에. 맛집 · 카페 · 술집, 직접 가본 곳만 올립니다 — busanmade." />
+  <title>busanmade — 부산 맛집 순위, 한눈에</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">busan<span>made</span></a>
+      <nav class="main-nav">
+        <a href="#section-food" class="section-link">맛집</a>
+        <a href="#section-cafe" class="section-link">카페</a>
+        <a href="#section-bar" class="section-link">술집</a>
+        <a href="admin.html" class="admin-link">관리자</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero-full" id="hero">
+    <div class="hero-col col-1"><div class="hero-overlay"></div></div>
+    <div class="hero-col col-2"><div class="hero-overlay"></div></div>
+    <div class="hero-col col-3"><div class="hero-overlay"></div></div>
+    <div class="hero-content">
+      <h1>부산 맛집 순위, 한눈에</h1>
+      <p>맛집 · 카페 · 술집, 직접 가본 곳만 올립니다.</p>
+    </div>
+    <div class="scroll-indicator">
+      <span class="scroll-text">SCROLL</span>
+      <span class="scroll-arrow"></span>
+    </div>
+  </section>
+
+  <main class="container">
+    <section id="section-food" class="group">
+      <h2 class="group-title">맛집</h2>
+      <div class="category-grid" data-group="food"></div>
+    </section>
+
+    <section id="section-cafe" class="group">
+      <h2 class="group-title">카페</h2>
+      <div class="category-grid" data-group="cafe"></div>
+    </section>
+
+    <section id="section-bar" class="group">
+      <h2 class="group-title">술집</h2>
+      <div class="category-grid" data-group="bar"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 busanmade. 부산의 좋은 가게만 모았습니다.</p>
+    </div>
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>관리자 — busanmade</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">busan<span>made</span></a>
+      <nav class="main-nav">
+        <a href="index.html">홈</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container admin-page">
+    <section id="login-section">
+      <h1>관리자 로그인</h1>
+      <p class="muted">관리자 비밀번호를 입력하세요.</p>
+      <div class="form-row">
+        <input type="password" id="admin-password" placeholder="비밀번호" />
+        <button id="login-btn" class="btn primary">로그인</button>
+      </div>
+      <p id="login-error" class="error-msg"></p>
+    </section>
+
+    <section id="admin-section" class="hidden">
+      <div class="admin-toolbar">
+        <h1>가게 관리</h1>
+        <div>
+          <button id="export-btn" class="btn">데이터 내보내기</button>
+          <button id="import-btn" class="btn">데이터 가져오기</button>
+          <input type="file" id="import-file" accept="application/json" hidden />
+          <button id="logout-btn" class="btn">로그아웃</button>
+        </div>
+      </div>
+
+      <h2>새 가게 추가 / 수정</h2>
+      <form id="store-form" class="store-form">
+        <input type="hidden" id="store-id" />
+
+        <div class="form-grid">
+          <label>그룹
+            <select id="store-group" required>
+              <option value="food">맛집</option>
+              <option value="cafe">카페</option>
+              <option value="bar">술집</option>
+            </select>
+          </label>
+
+          <label id="category-field">카테고리
+            <select id="store-category">
+              <option value="한식">한식</option>
+              <option value="고기">고기</option>
+              <option value="해산물">해산물</option>
+              <option value="중식">중식</option>
+              <option value="일식">일식</option>
+              <option value="양식">양식</option>
+            </select>
+            <small class="muted" id="category-hint">맛집은 6개 카테고리 중 선택. 카페/술집은 통합 순위라 카테고리를 선택하지 않습니다.</small>
+          </label>
+
+          <label>순위 (낮을수록 상위)
+            <input type="number" id="store-rank" min="1" required />
+          </label>
+
+          <label>가게 이름
+            <input type="text" id="store-name" required />
+          </label>
+
+          <label class="full">주소
+            <input type="text" id="store-address" required />
+          </label>
+
+          <label>전화번호
+            <input type="text" id="store-phone" />
+          </label>
+
+          <label class="full">영업시간
+            <div class="hours-sync-row">
+              <label class="hours-sync-label">
+                <input type="checkbox" id="hours-sync-all" />
+                모든 요일에 동일하게 적용
+              </label>
+            </div>
+            <div class="hours-table">
+              <div class="hours-trow hours-thead">
+                <span></span><span>오픈</span><span>마감</span><span>브레이크 시작</span><span>브레이크 종료</span><span>라스트오더</span><span>휴무</span><span>24시간</span>
+              </div>
+              <div class="hours-trow" id="hrow-mon">
+                <span class="hours-day-name">월</span>
+                <input type="time" id="h-mon-open" class="hours-t" /><input type="time" id="h-mon-close" class="hours-t" /><input type="time" id="h-mon-bstart" class="hours-t" /><input type="time" id="h-mon-bend" class="hours-t" /><input type="time" id="h-mon-lo" class="hours-t" />
+                <input type="checkbox" id="h-mon-closed" class="hours-closed-chk" />
+                <input type="checkbox" id="h-mon-allday" class="hours-allday-chk" />
+              </div>
+              <div class="hours-trow" id="hrow-tue">
+                <span class="hours-day-name">화</span>
+                <input type="time" id="h-tue-open" class="hours-t" /><input type="time" id="h-tue-close" class="hours-t" /><input type="time" id="h-tue-bstart" class="hours-t" /><input type="time" id="h-tue-bend" class="hours-t" /><input type="time" id="h-tue-lo" class="hours-t" />
+                <input type="checkbox" id="h-tue-closed" class="hours-closed-chk" />
+                <input type="checkbox" id="h-tue-allday" class="hours-allday-chk" />
+              </div>
+              <div class="hours-trow" id="hrow-wed">
+                <span class="hours-day-name">수</span>
+                <input type="time" id="h-wed-open" class="hours-t" /><input type="time" id="h-wed-close" class="hours-t" /><input type="time" id="h-wed-bstart" class="hours-t" /><input type="time" id="h-wed-bend" class="hours-t" /><input type="time" id="h-wed-lo" class="hours-t" />
+                <input type="checkbox" id="h-wed-closed" class="hours-closed-chk" />
+                <input type="checkbox" id="h-wed-allday" class="hours-allday-chk" />
+              </div>
+              <div class="hours-trow" id="hrow-thu">
+                <span class="hours-day-name">목</span>
+                <input type="time" id="h-thu-open" class="hours-t" /><input type="time" id="h-thu-close" class="hours-t" /><input type="time" id="h-thu-bstart" class="hours-t" /><input type="time" id="h-thu-bend" class="hours-t" /><input type="time" id="h-thu-lo" class="hours-t" />
+                <input type="checkbox" id="h-thu-closed" class="hours-closed-chk" />
+                <input type="checkbox" id="h-thu-allday" class="hours-allday-chk" />
+              </div>
+              <div class="hours-trow" id="hrow-fri">
+                <span class="hours-day-name">금</span>
+                <input type="time" id="h-fri-open" class="hours-t" /><input type="time" id="h-fri-close" class="hours-t" /><input type="time" id="h-fri-bstart" class="hours-t" /><input type="time" id="h-fri-bend" class="hours-t" /><input type="time" id="h-fri-lo" class="hours-t" />
+                <input type="checkbox" id="h-fri-closed" class="hours-closed-chk" />
+                <input type="checkbox" id="h-fri-allday" class="hours-allday-chk" />
+              </div>
+              <div class="hours-trow" id="hrow-sat">
+                <span class="hours-day-name">토</span>
+                <input type="time" id="h-sat-open" class="hours-t" /><input type="time" id="h-sat-close" class="hours-t" /><input type="time" id="h-sat-bstart" class="hours-t" /><input type="time" id="h-sat-bend" class="hours-t" /><input type="time" id="h-sat-lo" class="hours-t" />
+                <input type="checkbox" id="h-sat-closed" class="hours-closed-chk" />
+                <input type="checkbox" id="h-sat-allday" class="hours-allday-chk" />
+              </div>
+              <div class="hours-trow" id="hrow-sun">
+                <span class="hours-day-name">일</span>
+                <input type="time" id="h-sun-open" class="hours-t" /><input type="time" id="h-sun-close" class="hours-t" /><input type="time" id="h-sun-bstart" class="hours-t" /><input type="time" id="h-sun-bend" class="hours-t" /><input type="time" id="h-sun-lo" class="hours-t" />
+                <input type="checkbox" id="h-sun-closed" class="hours-closed-chk" />
+                <input type="checkbox" id="h-sun-allday" class="hours-allday-chk" />
+              </div>
+            </div>
+          </label>
+
+          <label>주차정보
+            <input type="text" id="store-parking" placeholder="예: 무료 주차 10대" />
+          </label>
+
+          <label>가격대
+            <input type="text" id="store-price" placeholder="예: 1만원대" />
+          </label>
+
+          <label class="full">간판/대표 사진 URL
+            <input type="text" id="store-image" placeholder="https://..." />
+          </label>
+
+          <label class="full">인스타그램 링크
+            <input type="url" id="store-instagram" placeholder="https://instagram.com/..." />
+          </label>
+
+          <label class="full">네이버플레이스 링크
+            <input type="url" id="store-naver" placeholder="https://map.naver.com/... 또는 https://m.place.naver.com/..." />
+          </label>
+
+<label class="full">메뉴/특징 (쉼표로 구분)
+            <input type="text" id="store-menu" placeholder="예: 삼겹살, 항정살, 된장찌개" />
+          </label>
+
+          <label class="full">설명
+            <textarea id="store-desc" rows="4"></textarea>
+          </label>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn primary">저장</button>
+          <button type="button" id="reset-btn" class="btn">초기화</button>
+        </div>
+      </form>
+
+      <h2>등록된 가게 (<span id="store-count">0</span>)</h2>
+      <div class="admin-filter">
+        <select id="filter-group">
+          <option value="">전체 그룹</option>
+          <option value="food">맛집</option>
+          <option value="cafe">카페</option>
+          <option value="bar">술집</option>
+        </select>
+        <input type="text" id="filter-text" placeholder="이름·카테고리 검색" />
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>그룹</th>
+              <th>카테고리</th>
+              <th>순위</th>
+              <th>이름</th>
+              <th>주소</th>
+              <th>관리</th>
+            </tr>
+          </thead>
+          <tbody id="admin-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 busanmade.</p>
+    </div>
+  </footer>
+
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
