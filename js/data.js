@@ -92,57 +92,67 @@ const _STORES_REF = _db.ref("stores");
 
 const BM = {
   _cache: null,
+  _ready: false,
 
   init() {
-    return _STORES_REF.once("value").then(snapshot => {
-      const val = snapshot.val();
-      if (!val) {
-        BM._cache = [...SAMPLE_STORES];
-        BM._push();
-      } else {
-        BM._cache = Object.values(val);
-      }
+    return new Promise((resolve) => {
+      // 실시간 리스너 — 다른 사람이 저장해도 캐시가 자동 갱신됨
+      _STORES_REF.on("value", (snapshot) => {
+        const val = snapshot.val();
+        if (!val) {
+          BM._cache = [...SAMPLE_STORES];
+          BM._pushAll();
+        } else {
+          BM._cache = Object.values(val);
+        }
+        if (!BM._ready) {
+          BM._ready = true;
+          resolve();
+        }
+      });
     });
   },
 
-  _push() {
+  // 데이터 가져오기(import)용 전체 교체
+  _pushAll() {
     const obj = {};
     (BM._cache || []).forEach(s => { obj[s.id] = s; });
-    return _STORES_REF.set(obj).catch(err => {
-      console.error("Firebase 저장 실패:", err);
-      alert("저장에 실패했습니다. 인터넷 연결이나 Firebase 권한을 확인해주세요.\n\n오류: " + err.message);
-    });
+    return _STORES_REF.set(obj).catch(BM._onError);
+  },
+
+  _onError(err) {
+    console.error("Firebase 저장 실패:", err);
+    alert("저장에 실패했습니다. 인터넷 연결이나 Firebase 권한을 확인해주세요.\n\n오류: " + err.message);
   },
 
   load() {
     return BM._cache ? [...BM._cache] : [];
   },
 
+  // import 전용 (전체 교체)
   save(stores) {
     BM._cache = [...stores];
-    BM._push();
+    return BM._pushAll();
   },
 
   add(store) {
-    const stores = BM.load();
     store.id = "s" + Date.now();
-    stores.push(store);
-    BM.save(stores);
+    BM._cache.push(store);
+    _STORES_REF.child(store.id).set(store).catch(BM._onError);
     return store;
   },
 
   update(id, patch) {
-    const stores = BM.load();
-    const idx = stores.findIndex(s => s.id === id);
+    const idx = BM._cache.findIndex(s => s.id === id);
     if (idx === -1) return null;
-    stores[idx] = { ...stores[idx], ...patch, id };
-    BM.save(stores);
-    return stores[idx];
+    BM._cache[idx] = { ...BM._cache[idx], ...patch, id };
+    _STORES_REF.child(id).set(BM._cache[idx]).catch(BM._onError);
+    return BM._cache[idx];
   },
 
   remove(id) {
-    const stores = BM.load().filter(s => s.id !== id);
-    BM.save(stores);
+    BM._cache = BM._cache.filter(s => s.id !== id);
+    _STORES_REF.child(id).remove().catch(BM._onError);
   },
 
   findById(id) {
