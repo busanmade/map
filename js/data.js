@@ -108,7 +108,10 @@ const BM = {
   _push() {
     const obj = {};
     (BM._cache || []).forEach(s => { obj[s.id] = s; });
-    _STORES_REF.set(obj);
+    return _STORES_REF.set(obj).catch(err => {
+      console.error("Firebase 저장 실패:", err);
+      alert("저장에 실패했습니다. 인터넷 연결이나 Firebase 권한을 확인해주세요.\n\n오류: " + err.message);
+    });
   },
 
   load() {
