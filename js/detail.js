@@ -102,6 +102,13 @@
     </div>
   `;
 
+  const reviewCard = store.review ? `
+    <div class="review-card">
+      <div class="review-label">busanmade의 한줄평</div>
+      <div class="review-text">${escapeHTML(store.review)}</div>
+    </div>
+  ` : "";
+
   const mapUrl = store.naver && store.naver.trim()
     ? store.naver.trim()
     : `https://map.naver.com/v5/search/${encodeURIComponent(store.address || store.name)}`;
@@ -114,7 +121,10 @@
 
   root.innerHTML = `
     <div class="detail-hero">
-      ${cardBlock}
+      <div class="detail-left">
+        ${cardBlock}
+        ${reviewCard}
+      </div>
       <div class="detail-info">
         <span class="detail-rank-badge">${GROUP_LABELS[store.group] || ""} · ${escapeHTML(store.category)} ${store.rank}위</span>
         <h1>${escapeHTML(store.name)}</h1>
@@ -132,6 +142,7 @@
       </div>
     </div>
     ${store.desc ? `<div class="detail-desc">${escapeHTML(store.desc)}</div>` : ""}
+
   `;
 
   window.toggleHoursDetail = function (btn) {

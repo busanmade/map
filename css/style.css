@@ -434,6 +434,36 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
   margin: 4px 6px 4px 0;
 }
 
+/* ===== 상세페이지 왼쪽 컬럼 ===== */
+.detail-left {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-self: start;
+}
+
+/* ===== 한줄평 카드 ===== */
+.review-card {
+  background: #fff;
+  border: 0.5px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  box-shadow: var(--shadow-sm);
+}
+.review-label {
+  font-size: 11px;
+  color: #A32D2D;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  margin-bottom: 8px;
+}
+.review-text {
+  font-size: 16px;
+  color: #1A1A1A;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
 /* ===== Store hero card (상세페이지 카드) ===== */
 .store-card {
   border-radius: var(--radius);
@@ -441,7 +471,6 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
   box-shadow: var(--shadow-lg);
   display: flex;
   flex-direction: column;
-  align-self: start;
 }
 .store-card-red {
   background: #A32D2D;

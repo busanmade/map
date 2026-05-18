@@ -181,6 +181,7 @@
       naver: $("store-naver").value.trim(),
       menu: $("store-menu").value.trim(),
       comment: $("store-comment").value.trim(),
+      review: $("store-review").value.trim(),
       desc: $("store-desc").value.trim(),
     };
   }
@@ -202,6 +203,7 @@
     $("store-naver").value = s.naver || "";
     $("store-menu").value = s.menu || "";
     $("store-comment").value = s.comment || "";
+    $("store-review").value = s.review || "";
     $("store-desc").value = s.desc || "";
     syncCategoryField();
   }
