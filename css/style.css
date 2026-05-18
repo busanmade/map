@@ -449,24 +449,24 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
   flex-direction: column;
   flex: 4;
 }
-.sc-top { display: flex; flex-direction: column; gap: 5px; }
+.sc-top { display: flex; flex-direction: column; gap: 6px; }
 .sc-district {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.65);
-  font-weight: 500;
-  letter-spacing: 0.04em;
+  font-size: 24px;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.02em;
 }
 .sc-rank-cat {
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.5);
-  font-weight: 400;
-  letter-spacing: 0.06em;
+  font-size: 15px;
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 0.04em;
 }
 .sc-name-wrap {
   flex: 1;
   display: flex;
   align-items: center;
-  padding: 12px 0;
+  padding: 10px 0;
 }
 .sc-name {
   font-family: "Black Han Sans", sans-serif;
@@ -478,14 +478,14 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
   word-break: keep-all;
 }
 .sc-pick {
-  font-size: 9px;
-  color: rgba(255, 255, 255, 0.45);
-  letter-spacing: 0.14em;
+  font-size: 18px;
+  color: #fff;
+  letter-spacing: 0.12em;
   font-weight: 500;
 }
 .store-card-white {
   background: #fff;
-  padding: 14px 24px 18px;
+  padding: 16px 24px 20px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -494,21 +494,22 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
 .sc-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 8px;
+  gap: 8px;
+  margin-bottom: 10px;
 }
 .sc-tag {
   display: inline-block;
   background: var(--brand-soft);
   color: var(--brand-dark);
-  padding: 4px 11px;
+  padding: 6px 16px;
   border-radius: 999px;
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 14px;
+  font-weight: 600;
 }
 .sc-comment {
-  font-size: 12px;
+  font-size: 16px;
   color: #1A1A1A;
+  font-weight: 600;
   line-height: 1.5;
 }
 
@@ -736,6 +737,9 @@ input:focus, select:focus, textarea:focus {
 
   .detail-info h1 { font-size: 26px; }
   .sc-name { font-size: 44px; }
+  .sc-district { font-size: 18px; }
+  .sc-rank-cat { font-size: 13px; }
+  .sc-pick { font-size: 14px; }
   .hours-table { overflow-x: auto; }
   .hours-trow { grid-template-columns: 2rem repeat(5, minmax(60px, 1fr)) 2.5rem 2.5rem; }
   .info-label { flex: 0 0 90px; font-size: 13px; white-space: nowrap; }
