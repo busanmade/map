@@ -444,20 +444,20 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
 }
 .store-card-red {
   background: #A32D2D;
-  padding: 28px 28px 24px;
+  padding: 28px 28px 20px;
   display: flex;
   flex-direction: column;
-  min-height: 260px;
+  flex: 4;
 }
-.sc-top { display: flex; flex-direction: column; gap: 4px; }
+.sc-top { display: flex; flex-direction: column; gap: 5px; }
 .sc-district {
-  font-size: 13px;
+  font-size: 12px;
   color: rgba(255, 255, 255, 0.65);
   font-weight: 500;
   letter-spacing: 0.04em;
 }
 .sc-rank-cat {
-  font-size: 11px;
+  font-size: 10px;
   color: rgba(255, 255, 255, 0.5);
   font-weight: 400;
   letter-spacing: 0.06em;
@@ -466,45 +466,49 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
   flex: 1;
   display: flex;
   align-items: center;
-  padding: 16px 0;
+  padding: 12px 0;
 }
 .sc-name {
   font-family: "Black Han Sans", sans-serif;
-  font-size: 40px;
+  font-size: 60px;
   color: #fff;
   font-weight: 400;
   letter-spacing: -0.01em;
-  line-height: 1.2;
+  line-height: 1.15;
   word-break: keep-all;
 }
 .sc-pick {
-  font-size: 10px;
+  font-size: 9px;
   color: rgba(255, 255, 255, 0.45);
   letter-spacing: 0.14em;
   font-weight: 500;
 }
 .store-card-white {
   background: #fff;
-  padding: 18px 24px;
+  padding: 14px 24px 18px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .sc-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 .sc-tag {
   display: inline-block;
   background: var(--brand-soft);
   color: var(--brand-dark);
-  padding: 5px 12px;
+  padding: 4px 11px;
   border-radius: 999px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
 }
 .sc-comment {
-  font-size: 13px;
-  color: var(--muted);
+  font-size: 12px;
+  color: #1A1A1A;
   line-height: 1.5;
 }
 
@@ -731,8 +735,7 @@ input:focus, select:focus, textarea:focus {
   .category-card { padding: 22px; }
 
   .detail-info h1 { font-size: 26px; }
-  .sc-name { font-size: 30px; }
-  .store-card-red { min-height: 210px; }
+  .sc-name { font-size: 44px; }
   .hours-table { overflow-x: auto; }
   .hours-trow { grid-template-columns: 2rem repeat(5, minmax(60px, 1fr)) 2.5rem 2.5rem; }
   .info-label { flex: 0 0 90px; font-size: 13px; white-space: nowrap; }
