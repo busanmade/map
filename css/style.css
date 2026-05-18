@@ -441,30 +441,36 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
   box-shadow: var(--shadow-lg);
   display: flex;
   flex-direction: column;
+  align-self: start;
 }
 .store-card-red {
   background: #A32D2D;
-  padding: 28px 28px 24px;
+  padding: 22px 22px 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  flex: 4;
+  min-height: 300px;
+}
+.sc-top {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 .sc-district {
-  font-size: 18px;
+  font-size: 16px;
   color: #fff;
   font-weight: 600;
   letter-spacing: 0.01em;
 }
 .sc-rank-cat {
-  font-size: 14px;
+  font-size: 13px;
   color: rgba(255, 255, 255, 0.7);
   font-weight: 400;
   letter-spacing: 0.04em;
 }
 .sc-name {
   font-family: "Black Han Sans", sans-serif;
-  font-size: 60px;
+  font-size: 48px;
   color: #fff;
   font-weight: 400;
   letter-spacing: -0.01em;
@@ -472,15 +478,14 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
   word-break: keep-all;
 }
 .sc-pick {
-  font-size: 11px;
+  font-size: 10px;
   color: rgba(255, 255, 255, 0.6);
-  letter-spacing: 0.22em;
+  letter-spacing: 0.15em;
   font-weight: 500;
 }
 .store-card-white {
   background: #fff;
-  padding: 16px 24px 20px;
-  flex: 1;
+  padding: 14px 22px 18px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -730,10 +735,8 @@ input:focus, select:focus, textarea:focus {
   .category-card { padding: 22px; }
 
   .detail-info h1 { font-size: 26px; }
-  .sc-name { font-size: 44px; }
-  .sc-district { font-size: 15px; }
-  .sc-rank-cat { font-size: 12px; }
-  .sc-pick { font-size: 10px; }
+  .sc-name { font-size: 38px; }
+  .store-card-red { min-height: 240px; }
   .hours-table { overflow-x: auto; }
   .hours-trow { grid-template-columns: 2rem repeat(5, minmax(60px, 1fr)) 2.5rem 2.5rem; }
   .info-label { flex: 0 0 90px; font-size: 13px; white-space: nowrap; }

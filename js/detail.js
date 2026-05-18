@@ -88,8 +88,10 @@
   const cardBlock = `
     <div class="store-card">
       <div class="store-card-red">
-        <span class="sc-district">${district ? escapeHTML(district) : ""}</span>
-        <span class="sc-rank-cat">${escapeHTML(rankStr)} · ${catLabel}</span>
+        <div class="sc-top">
+          <span class="sc-district">${district ? escapeHTML(district) : ""}</span>
+          <span class="sc-rank-cat">${escapeHTML(rankStr)} · ${catLabel}</span>
+        </div>
         <div class="sc-name">${escapeHTML(store.name)}</div>
         <span class="sc-pick">BUSANMADE PICK</span>
       </div>
