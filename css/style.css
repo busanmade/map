@@ -433,6 +433,81 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
   font-size: 14px; font-weight: 500;
   margin: 4px 6px 4px 0;
 }
+
+/* ===== Store hero card (상세페이지 카드) ===== */
+.store-card {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+}
+.store-card-red {
+  background: #A32D2D;
+  padding: 28px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  min-height: 260px;
+}
+.sc-top { display: flex; flex-direction: column; gap: 4px; }
+.sc-district {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.sc-rank-cat {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 400;
+  letter-spacing: 0.06em;
+}
+.sc-name-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 16px 0;
+}
+.sc-name {
+  font-family: "Black Han Sans", sans-serif;
+  font-size: 40px;
+  color: #fff;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  word-break: keep-all;
+}
+.sc-pick {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.14em;
+  font-weight: 500;
+}
+.store-card-white {
+  background: #fff;
+  padding: 18px 24px;
+}
+.sc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.sc-tag {
+  display: inline-block;
+  background: var(--brand-soft);
+  color: var(--brand-dark);
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.sc-comment {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
 .detail-desc {
   margin-top: 36px; padding-top: 32px;
   border-top: 1px solid var(--line);
@@ -656,6 +731,8 @@ input:focus, select:focus, textarea:focus {
   .category-card { padding: 22px; }
 
   .detail-info h1 { font-size: 26px; }
+  .sc-name { font-size: 30px; }
+  .store-card-red { min-height: 210px; }
   .hours-table { overflow-x: auto; }
   .hours-trow { grid-template-columns: 2rem repeat(5, minmax(60px, 1fr)) 2.5rem 2.5rem; }
   .info-label { flex: 0 0 90px; font-size: 13px; white-space: nowrap; }

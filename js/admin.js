@@ -180,6 +180,7 @@
       instagram: $("store-instagram").value.trim(),
       naver: $("store-naver").value.trim(),
       menu: $("store-menu").value.trim(),
+      comment: $("store-comment").value.trim(),
       desc: $("store-desc").value.trim(),
     };
   }
@@ -200,6 +201,7 @@
     $("store-instagram").value = s.instagram || "";
     $("store-naver").value = s.naver || "";
     $("store-menu").value = s.menu || "";
+    $("store-comment").value = s.comment || "";
     $("store-desc").value = s.desc || "";
     syncCategoryField();
   }

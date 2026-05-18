@@ -54,6 +54,12 @@
       </div>`;
   }
 
+  function extractDistrict(address) {
+    if (!address) return "";
+    const m = address.match(/([가-힣]+구)/);
+    return m ? m[1] : "";
+  }
+
   const root = document.getElementById("detail-content");
   const params = new URLSearchParams(location.search);
   const id = params.get("id");
@@ -68,16 +74,35 @@
 
   document.title = `${store.name} — busanmade`;
 
-  const imageBlock = store.image
-    ? `<img class="detail-image" src="${escapeHTML(store.image)}" alt="${escapeHTML(store.name)}" onerror="this.outerHTML='<div class=&quot;detail-image-placeholder&quot;>${escapeHTML(store.name.slice(0, 2))}</div>'" />`
-    : `<div class="detail-image-placeholder">${escapeHTML(store.name.slice(0, 2))}</div>`;
+  const district = extractDistrict(store.address);
+  const rankStr = "NO." + String(store.rank).padStart(2, "0");
+  const catLabel = escapeHTML(store.category || GROUP_LABELS[store.group] || "");
 
-  const menuText = (store.menu || "")
+  const menuTags = (store.menu || "")
     .split(",")
     .map(m => m.trim())
     .filter(Boolean)
-    .map(m => escapeHTML(m))
-    .join(" · ");
+    .map(m => `<span class="sc-tag">${escapeHTML(m)}</span>`)
+    .join("");
+
+  const cardBlock = `
+    <div class="store-card">
+      <div class="store-card-red">
+        <div class="sc-top">
+          ${district ? `<span class="sc-district">${escapeHTML(district)}</span>` : ""}
+          <span class="sc-rank-cat">${escapeHTML(rankStr)} · ${catLabel}</span>
+        </div>
+        <div class="sc-name-wrap">
+          <div class="sc-name">${escapeHTML(store.name)}</div>
+        </div>
+        <span class="sc-pick">BUSANMADE PICK</span>
+      </div>
+      <div class="store-card-white">
+        ${menuTags ? `<div class="sc-tags">${menuTags}</div>` : ""}
+        ${store.comment ? `<div class="sc-comment">${escapeHTML(store.comment)}</div>` : ""}
+      </div>
+    </div>
+  `;
 
   const mapUrl = store.naver && store.naver.trim()
     ? store.naver.trim()
@@ -91,7 +116,7 @@
 
   root.innerHTML = `
     <div class="detail-hero">
-      <div>${imageBlock}</div>
+      ${cardBlock}
       <div class="detail-info">
         <span class="detail-rank-badge">${GROUP_LABELS[store.group] || ""} · ${escapeHTML(store.category)} ${store.rank}위</span>
         <h1>${escapeHTML(store.name)}</h1>
@@ -103,7 +128,6 @@
           <li><span class="info-label">영업시간</span>${renderHoursBlock(store.hours)}</li>
           <li><span class="info-label">주차</span><span class="info-value">${escapeHTML(store.parking || "-")}</span></li>
           <li><span class="info-label">가격대</span><span class="info-value">${escapeHTML(store.price || "-")}</span></li>
-          ${menuText ? `<li><span class="info-label">대표 메뉴</span><span class="info-value">${menuText}</span></li>` : ""}
         </ul>
 
         <div class="action-buttons">${buttons.join("")}</div>
