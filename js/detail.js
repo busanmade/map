@@ -97,7 +97,6 @@
       </div>
       <div class="store-card-white">
         ${menuTags ? `<div class="sc-tags">${menuTags}</div>` : ""}
-        ${store.comment ? `<div class="sc-comment">${escapeHTML(store.comment)}</div>` : ""}
       </div>
     </div>
   `;
