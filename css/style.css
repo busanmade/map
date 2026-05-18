@@ -444,29 +444,23 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
 }
 .store-card-red {
   background: #A32D2D;
-  padding: 28px 28px 20px;
+  padding: 28px 28px 24px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   flex: 4;
 }
-.sc-top { display: flex; flex-direction: column; gap: 6px; }
 .sc-district {
-  font-size: 24px;
+  font-size: 18px;
   color: #fff;
   font-weight: 600;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
 }
 .sc-rank-cat {
-  font-size: 15px;
-  color: #fff;
-  font-weight: 500;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 400;
   letter-spacing: 0.04em;
-}
-.sc-name-wrap {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  padding: 10px 0;
 }
 .sc-name {
   font-family: "Black Han Sans", sans-serif;
@@ -478,9 +472,9 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
   word-break: keep-all;
 }
 .sc-pick {
-  font-size: 18px;
-  color: #fff;
-  letter-spacing: 0.12em;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.22em;
   font-weight: 500;
 }
 .store-card-white {
@@ -507,9 +501,9 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
   font-weight: 600;
 }
 .sc-comment {
-  font-size: 16px;
+  font-size: 15px;
   color: #1A1A1A;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.5;
 }
 
@@ -737,9 +731,9 @@ input:focus, select:focus, textarea:focus {
 
   .detail-info h1 { font-size: 26px; }
   .sc-name { font-size: 44px; }
-  .sc-district { font-size: 18px; }
-  .sc-rank-cat { font-size: 13px; }
-  .sc-pick { font-size: 14px; }
+  .sc-district { font-size: 15px; }
+  .sc-rank-cat { font-size: 12px; }
+  .sc-pick { font-size: 10px; }
   .hours-table { overflow-x: auto; }
   .hours-trow { grid-template-columns: 2rem repeat(5, minmax(60px, 1fr)) 2.5rem 2.5rem; }
   .info-label { flex: 0 0 90px; font-size: 13px; white-space: nowrap; }
