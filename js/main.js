@@ -22,7 +22,7 @@
   function renderRankRow(store) {
     const cls = rankClass(store.rank);
     return `
-      <div class="rank-row" onclick="location.href='detail.html?id=${encodeURIComponent(store.id)}'">
+      <div class="rank-row" onclick="location.href='stores/${encodeURIComponent(store.id)}.html'">
         <span class="rank-num ${cls}">${store.rank}</span>
         <div class="rank-info">
           <div class="rank-name">${escapeHTML(store.name)}</div>

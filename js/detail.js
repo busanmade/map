@@ -62,7 +62,7 @@
 
   const root = document.getElementById("detail-content");
   const params = new URLSearchParams(location.search);
-  const id = params.get("id");
+  const id = params.get("id") || window.__STATIC_STORE_ID__ || null;
 
   BM.init().then(() => {
   const store = id ? BM.findById(id) : null;
