@@ -142,6 +142,22 @@
     </div>
     ${store.desc ? `<div class="detail-desc">${escapeHTML(store.desc)}</div>` : ""}
 
+    <section class="user-reviews-section">
+      <h2 class="user-reviews-title">방문 후기</h2>
+      <div id="reviews-list" class="reviews-list">
+        <div class="reviews-loading">불러오는 중...</div>
+      </div>
+      <form id="review-write-form" class="review-write-form">
+        <div class="review-write-top">
+          <input type="text" id="review-nickname" placeholder="닉네임 (최대 20자)" maxlength="20" autocomplete="off" />
+        </div>
+        <textarea id="review-body" placeholder="후기를 남겨주세요. (최대 300자)" rows="3" maxlength="300"></textarea>
+        <div class="review-write-bottom">
+          <span id="review-char-count" class="review-char-count">0 / 300</span>
+          <button type="submit" class="btn primary">후기 남기기</button>
+        </div>
+      </form>
+    </section>
   `;
 
   window.toggleHoursDetail = function (btn) {
@@ -150,5 +166,57 @@
     const hidden = week.classList.toggle("hidden");
     btn.textContent = hidden ? "영업시간 더보기" : "영업시간 접기";
   };
+
+  // ===== 방문 후기 =====
+  function formatReviewDate(ts) {
+    const d = new Date(ts);
+    return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
+  }
+
+  const reviewsList = document.getElementById("reviews-list");
+
+  function renderReviews(reviews) {
+    if (reviews.length === 0) {
+      reviewsList.innerHTML = `<div class="reviews-empty">첫 번째 후기를 남겨주세요!</div>`;
+      return;
+    }
+    reviewsList.innerHTML = reviews.map(r => `
+      <div class="user-review-item">
+        <div class="user-review-header">
+          <span class="user-review-nick">${escapeHTML(r.nickname)}</span>
+          <span class="user-review-date">${formatReviewDate(r.createdAt)}</span>
+        </div>
+        <div class="user-review-body">${escapeHTML(r.body)}</div>
+        ${r.reply ? `
+          <div class="admin-reply-block">
+            <span class="admin-reply-tag">busanmade</span>
+            <div class="admin-reply-text">${escapeHTML(r.reply)}</div>
+          </div>
+        ` : ""}
+      </div>
+    `).join("");
+  }
+
+  BM.listenReviews(id, renderReviews);
+
+  const reviewForm = document.getElementById("review-write-form");
+  const reviewBodyEl = document.getElementById("review-body");
+  const charCount = document.getElementById("review-char-count");
+
+  reviewBodyEl.addEventListener("input", () => {
+    charCount.textContent = `${reviewBodyEl.value.length} / 300`;
+  });
+
+  reviewForm.addEventListener("submit", e => {
+    e.preventDefault();
+    const nickname = document.getElementById("review-nickname").value.trim();
+    const body = reviewBodyEl.value.trim();
+    if (!nickname) { alert("닉네임을 입력해주세요."); return; }
+    if (!body) { alert("후기 내용을 입력해주세요."); return; }
+    BM.addReview(id, nickname, body);
+    reviewBodyEl.value = "";
+    charCount.textContent = "0 / 300";
+    document.getElementById("review-nickname").value = "";
+  });
   }); // BM.init().then
 })();

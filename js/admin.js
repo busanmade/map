@@ -341,8 +341,89 @@
     e.target.value = "";
   });
 
+  // ===== 리뷰 관리 =====
+  function formatReviewDate(ts) {
+    const d = new Date(ts);
+    return `${d.getFullYear()}.${String(d.getMonth() + 1).padStart(2, "0")}.${String(d.getDate()).padStart(2, "0")}`;
+  }
+
+  function renderAdminReviews(reviews) {
+    $("review-total-count").textContent = reviews.length;
+    const wrap = $("admin-reviews-wrap");
+
+    if (reviews.length === 0) {
+      wrap.innerHTML = `<div class="empty-state">등록된 후기가 없습니다.</div>`;
+      return;
+    }
+
+    wrap.innerHTML = reviews.map(r => {
+      const store = BM.findById(r.storeId);
+      const storeName = store ? store.name : "삭제된 가게";
+      return `
+        <div class="admin-review-item" id="ar-${escapeHTML(r.id)}">
+          <div class="admin-review-meta">
+            <span class="admin-review-store-badge">${escapeHTML(storeName)}</span>
+            <span class="admin-review-nick">${escapeHTML(r.nickname)}</span>
+            <span class="admin-review-date">${formatReviewDate(r.createdAt)}</span>
+          </div>
+          <div class="admin-review-body">${escapeHTML(r.body)}</div>
+          ${r.reply ? `
+            <div class="admin-review-existing-reply">
+              <span class="admin-reply-tag">busanmade 답글</span>
+              <div class="reply-body-text">${escapeHTML(r.reply)}</div>
+            </div>
+          ` : ""}
+          <div class="admin-review-actions">
+            <button class="btn" data-act="toggle-reply" data-id="${escapeHTML(r.id)}" data-store-id="${escapeHTML(r.storeId)}">${r.reply ? "답글 수정" : "답글 달기"}</button>
+            <button class="btn danger" data-act="delete-review" data-id="${escapeHTML(r.id)}" data-store-id="${escapeHTML(r.storeId)}">삭제</button>
+          </div>
+          <div class="admin-reply-form hidden" id="reply-form-${escapeHTML(r.id)}">
+            <textarea rows="2" placeholder="답글을 입력하세요.">${r.reply ? escapeHTML(r.reply) : ""}</textarea>
+            <div class="admin-reply-form-btns">
+              <button class="btn primary" data-act="save-reply" data-id="${escapeHTML(r.id)}" data-store-id="${escapeHTML(r.storeId)}">저장</button>
+              <button class="btn" data-act="cancel-reply" data-id="${escapeHTML(r.id)}">취소</button>
+              ${r.reply ? `<button class="btn danger" data-act="delete-reply" data-id="${escapeHTML(r.id)}" data-store-id="${escapeHTML(r.storeId)}">답글 삭제</button>` : ""}
+            </div>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  $("admin-reviews-wrap").addEventListener("click", e => {
+    const btn = e.target.closest("button[data-act]");
+    if (!btn) return;
+    const act = btn.dataset.act;
+    const reviewId = btn.dataset.id;
+    const storeId = btn.dataset.storeId;
+
+    if (act === "toggle-reply") {
+      const form = $(`reply-form-${reviewId}`);
+      if (form) form.classList.toggle("hidden");
+    } else if (act === "cancel-reply") {
+      const form = $(`reply-form-${reviewId}`);
+      if (form) form.classList.add("hidden");
+    } else if (act === "save-reply") {
+      const form = $(`reply-form-${reviewId}`);
+      const ta = form && form.querySelector("textarea");
+      if (!ta) return;
+      const reply = ta.value.trim();
+      if (!reply) { alert("답글 내용을 입력해주세요."); return; }
+      BM.updateReview(storeId, reviewId, { reply, replyAt: Date.now() });
+    } else if (act === "delete-reply") {
+      if (confirm("답글을 삭제할까요?")) {
+        BM.updateReview(storeId, reviewId, { reply: null, replyAt: null });
+      }
+    } else if (act === "delete-review") {
+      if (confirm("이 후기를 삭제할까요?")) {
+        BM.deleteReview(storeId, reviewId);
+      }
+    }
+  });
+
   // ===== 초기화 =====
   BM.init().then(() => {
+    BM.listenAllReviews(renderAdminReviews);
     if (isLoggedIn()) showAdmin();
     else showLogin();
   });

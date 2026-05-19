@@ -89,6 +89,7 @@ const SAMPLE_STORES = [
 firebase.initializeApp(FIREBASE_CONFIG);
 const _db = firebase.database();
 const _STORES_REF = _db.ref("stores");
+const _REVIEWS_REF = _db.ref("reviews");
 
 const BM = {
   _cache: null,
@@ -177,5 +178,43 @@ const BM = {
   reset() {
     BM._cache = [];
     _STORES_REF.remove();
+  },
+
+  // ===== 리뷰 =====
+  addReview(storeId, nickname, body) {
+    const ref = _REVIEWS_REF.child(storeId).push();
+    const review = { id: ref.key, storeId, nickname, body, createdAt: Date.now() };
+    ref.set(review).catch(BM._onError);
+    return review;
+  },
+
+  listenReviews(storeId, callback) {
+    _REVIEWS_REF.child(storeId).on("value", snap => {
+      const val = snap.val();
+      const reviews = val
+        ? Object.values(val).sort((a, b) => a.createdAt - b.createdAt)
+        : [];
+      callback(reviews);
+    });
+  },
+
+  updateReview(storeId, reviewId, patch) {
+    return _REVIEWS_REF.child(storeId).child(reviewId).update(patch).catch(BM._onError);
+  },
+
+  deleteReview(storeId, reviewId) {
+    return _REVIEWS_REF.child(storeId).child(reviewId).remove().catch(BM._onError);
+  },
+
+  listenAllReviews(callback) {
+    _REVIEWS_REF.on("value", snap => {
+      const val = snap.val() || {};
+      const reviews = [];
+      Object.keys(val).forEach(sid => {
+        Object.values(val[sid] || {}).forEach(r => reviews.push(r));
+      });
+      reviews.sort((a, b) => b.createdAt - a.createdAt);
+      callback(reviews);
+    });
   },
 };

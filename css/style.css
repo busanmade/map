@@ -548,6 +548,175 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
   line-height: 1.8;
 }
 
+/* ===== 방문 후기 섹션 (상세페이지) ===== */
+.user-reviews-section {
+  margin-top: 48px;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+}
+.user-reviews-title {
+  font-size: 22px; font-weight: 800;
+  margin: 0 0 24px;
+  letter-spacing: -0.03em;
+}
+
+.reviews-list {
+  display: flex; flex-direction: column; gap: 1px;
+  margin-bottom: 28px;
+}
+.reviews-loading, .reviews-empty {
+  padding: 32px 0;
+  text-align: center;
+  color: var(--muted); font-size: 14px;
+}
+
+.user-review-item {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 18px 20px;
+  margin-bottom: 10px;
+}
+.user-review-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 10px;
+}
+.user-review-nick {
+  font-size: 14px; font-weight: 700; color: var(--text);
+}
+.user-review-date {
+  font-size: 12px; color: var(--muted);
+}
+.user-review-body {
+  font-size: 15px; color: var(--text); line-height: 1.65;
+  white-space: pre-wrap; word-break: break-word;
+}
+
+.admin-reply-block {
+  margin-top: 14px;
+  background: var(--brand-soft);
+  border-left: 3px solid var(--brand);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 12px 16px;
+}
+.admin-reply-tag {
+  display: inline-block;
+  font-size: 11px; font-weight: 700; color: var(--brand);
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+.admin-reply-text {
+  font-size: 14px; color: var(--text); line-height: 1.6;
+  white-space: pre-wrap; word-break: break-word;
+}
+
+.review-write-form {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 22px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.review-write-top input {
+  width: 220px;
+  padding: 10px 14px;
+  border: 1px solid var(--line); border-radius: var(--radius-sm);
+  font-size: 14px; font-family: inherit;
+  background: #fff; color: var(--text);
+  transition: border-color 0.18s ease;
+}
+.review-write-top input:focus {
+  outline: none; border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(163, 45, 45, 0.1);
+}
+.review-write-form textarea {
+  width: 100%; resize: vertical;
+  padding: 12px 14px;
+  border: 1px solid var(--line); border-radius: var(--radius-sm);
+  font-size: 14px; font-family: inherit;
+  background: #fff; color: var(--text);
+  transition: border-color 0.18s ease;
+}
+.review-write-form textarea:focus {
+  outline: none; border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(163, 45, 45, 0.1);
+}
+.review-write-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.review-char-count {
+  font-size: 12px; color: var(--muted);
+}
+
+/* ===== 관리자 — 리뷰 관리 ===== */
+.admin-reviews-wrap {
+  display: flex; flex-direction: column; gap: 10px;
+  margin-top: 4px;
+}
+.admin-review-item {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 18px 20px;
+}
+.admin-review-meta {
+  display: flex; align-items: center; gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+.admin-review-store-badge {
+  display: inline-block;
+  background: var(--brand); color: #fff;
+  padding: 3px 10px; border-radius: 999px;
+  font-size: 12px; font-weight: 600;
+}
+.admin-review-nick {
+  font-size: 14px; font-weight: 700; color: var(--text);
+}
+.admin-review-date {
+  font-size: 12px; color: var(--muted); margin-left: auto;
+}
+.admin-review-body {
+  font-size: 14px; color: var(--text); line-height: 1.6;
+  white-space: pre-wrap; word-break: break-word;
+  margin-bottom: 12px;
+}
+.admin-review-existing-reply {
+  background: var(--brand-soft);
+  border-left: 3px solid var(--brand);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+}
+.admin-review-existing-reply .admin-reply-tag {
+  font-size: 11px; font-weight: 700; color: var(--brand);
+  letter-spacing: 0.04em;
+  display: block; margin-bottom: 4px;
+}
+.admin-review-existing-reply .reply-body-text {
+  font-size: 14px; color: var(--text); line-height: 1.6;
+  white-space: pre-wrap;
+}
+.admin-review-actions {
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.admin-reply-form {
+  margin-top: 12px; display: flex; flex-direction: column; gap: 8px;
+}
+.admin-reply-form textarea {
+  width: 100%; resize: vertical;
+  padding: 10px 14px;
+  border: 1px solid var(--line); border-radius: var(--radius-sm);
+  font-size: 14px; font-family: inherit;
+  background: #fff; color: var(--text);
+  transition: border-color 0.18s ease;
+}
+.admin-reply-form textarea:focus {
+  outline: none; border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(163, 45, 45, 0.1);
+}
+.admin-reply-form-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+
 /* ===== Footer ===== */
 .site-footer {
   margin-top: 100px; padding: 36px 0;
