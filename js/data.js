@@ -86,7 +86,9 @@ const SAMPLE_STORES = [
     desc: "광안리 야경을 보며 즐기는 일본식 선술집." },
 ];
 
-firebase.initializeApp(FIREBASE_CONFIG);
+if (!firebase.apps.length) {
+  firebase.initializeApp(FIREBASE_CONFIG);
+}
 const _db = firebase.database();
 const _STORES_REF = _db.ref("stores");
 const _REVIEWS_REF = _db.ref("reviews");
@@ -94,10 +96,12 @@ const _REVIEWS_REF = _db.ref("reviews");
 const BM = {
   _cache: null,
   _ready: false,
+  _initPromise: null,
 
   init() {
-    return new Promise((resolve) => {
-      // 실시간 리스너 — 다른 사람이 저장해도 캐시가 자동 갱신됨
+    if (BM._ready) return Promise.resolve();
+    if (BM._initPromise) return BM._initPromise;
+    BM._initPromise = new Promise((resolve) => {
       _STORES_REF.on("value", (snapshot) => {
         const val = snapshot.val();
         if (!val) {
@@ -112,6 +116,7 @@ const BM = {
         }
       });
     });
+    return BM._initPromise;
   },
 
   // 데이터 가져오기(import)용 전체 교체
@@ -189,13 +194,13 @@ const BM = {
   },
 
   listenReviews(storeId, callback) {
-    _REVIEWS_REF.child(storeId).on("value", snap => {
+    _REVIEWS_REF.child(storeId).once("value", snap => {
       const val = snap.val();
       const reviews = val
         ? Object.values(val).sort((a, b) => a.createdAt - b.createdAt)
         : [];
       callback(reviews);
-    });
+    }).catch(() => callback([]));
   },
 
   updateReview(storeId, reviewId, patch) {

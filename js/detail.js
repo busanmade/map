@@ -213,10 +213,14 @@
     const body = reviewBodyEl.value.trim();
     if (!nickname) { alert("닉네임을 입력해주세요."); return; }
     if (!body) { alert("후기 내용을 입력해주세요."); return; }
+    const submitBtn = reviewForm.querySelector("button[type=submit]");
+    submitBtn.disabled = true;
     BM.addReview(id, nickname, body);
+    setTimeout(() => BM.listenReviews(id, renderReviews), 600);
     reviewBodyEl.value = "";
     charCount.textContent = "0 / 300";
     document.getElementById("review-nickname").value = "";
+    submitBtn.disabled = false;
   });
   }); // BM.init().then
 })();
