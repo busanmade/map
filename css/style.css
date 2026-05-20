@@ -459,10 +459,12 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
   margin-bottom: 8px;
 }
 .review-text {
+  font-family: "Noto Serif KR", Georgia, serif;
   font-size: 16px;
+  font-style: italic;
   color: #1A1A1A;
-  font-weight: 500;
-  line-height: 1.6;
+  font-weight: 400;
+  line-height: 1.7;
 }
 
 /* ===== Store hero card (상세페이지 카드) ===== */
