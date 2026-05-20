@@ -61,6 +61,8 @@
   }
 
   const root = document.getElementById("detail-content");
+  root.style.opacity = "0"; // 정적 HTML 즉시 숨김 (깜빡임 방지)
+
   const params = new URLSearchParams(location.search);
   const id = params.get("id") || window.__STATIC_STORE_ID__ || null;
 
@@ -69,6 +71,7 @@
 
   if (!store) {
     root.innerHTML = `<div class="empty-state">가게 정보를 찾을 수 없습니다.</div>`;
+    root.style.opacity = "1";
     return;
   }
 
@@ -161,6 +164,10 @@
       </form>
     </section>
   `;
+
+  requestAnimationFrame(() => {
+    root.classList.add("detail-enter");
+  });
 
   window.toggleHoursDetail = function (btn) {
     const week = btn.nextElementSibling;

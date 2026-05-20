@@ -345,6 +345,23 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
 .rank-list .rank-row .rank-num.bronze { font-size: 28px; }
 
 /* ===== Detail page ===== */
+@keyframes detailEnter {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.detail-enter {
+  animation: detailEnter 0.45s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+.detail-enter .detail-left {
+  animation: detailEnter 0.45s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+.detail-enter .detail-info {
+  animation: detailEnter 0.45s 0.08s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+.detail-enter .user-reviews-section {
+  animation: detailEnter 0.45s 0.16s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
 .detail-page { padding: 56px 24px 96px; }
 .detail-hero {
   display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 28px;
