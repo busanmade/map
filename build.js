@@ -142,7 +142,7 @@ function storePageHTML(store) {
               ${menuTags?`<div class="sc-tags">${menuTags}</div>`:''}
             </div>
           </div>
-          ${store.review?`<div class="review-card"><div class="review-label">busanmade의 한줄평</div><div class="review-divider"></div><div class="review-text">${esc(store.review)}</div></div>`:''}
+          ${store.review?`<div class="review-card"><div class="review-label">busanmade의 한줄평</div><div class="review-divider"></div><div class="review-text">${esc(store.review).replace(/\n/g,'<br>')}</div></div>`:''}
         </div>
         <div class="detail-info">
           <span class="detail-rank-badge">${esc(GROUP_LABELS[store.group]||'')} · ${esc(store.category||'')} ${store.rank}위</span>

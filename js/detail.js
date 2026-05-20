@@ -101,11 +101,12 @@
     </div>
   `;
 
+  const reviewHtml = escapeHTML(store.review).replace(/\n/g, "<br>");
   const reviewCard = store.review ? `
     <div class="review-card">
       <div class="review-label">busanmade의 한줄평</div>
       <div class="review-divider"></div>
-      <div class="review-text">${escapeHTML(store.review)}</div>
+      <div class="review-text">${reviewHtml}</div>
     </div>
   ` : "";
 

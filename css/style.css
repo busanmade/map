@@ -476,7 +476,6 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
   width: 100%;
   text-align: center;
   display: block;
-  white-space: pre-wrap;
 }
 
 /* ===== Store hero card (상세페이지 카드) ===== */
