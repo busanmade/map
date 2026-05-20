@@ -4,8 +4,8 @@
   --text: #1A1A1A;
   --muted: #888888;
   --line: #E8E8E8;
-  --brand: #A32D2D;
-  --brand-dark: #7E2222;
+  --brand: #B02828;
+  --brand-dark: #8B1A1A;
   --brand-soft: #F5E2E2;
   --gold: #D4A017;
   --silver: #9AA0A6;
@@ -223,7 +223,7 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
 }
 .expand-btn:hover {
   background: var(--brand-soft);
-  border-color: rgba(163, 45, 45, 0.25);
+  border-color: rgba(176, 40, 40, 0.25);
   color: var(--brand);
 }
 
@@ -247,7 +247,7 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
 .category-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
-  border-color: rgba(193, 89, 60, 0.25);
+  border-color: rgba(176, 40, 40, 0.25);
 }
 .category-card-head {
   display: flex; justify-content: space-between; align-items: baseline;
@@ -345,12 +345,12 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
 .rank-list .rank-row .rank-num.bronze { font-size: 28px; }
 
 /* ===== Detail page ===== */
-.detail-page { padding: 40px 24px 80px; }
+.detail-page { padding: 56px 24px 96px; }
 .detail-hero {
-  display: grid; grid-template-columns: 1fr; gap: 32px; margin-top: 20px;
+  display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 28px;
 }
 @media (min-width: 760px) {
-  .detail-hero { grid-template-columns: 5fr 6fr; gap: 48px; }
+  .detail-hero { grid-template-columns: 5fr 6fr; gap: 56px; }
 }
 .detail-image {
   width: 100%; aspect-ratio: 4/3; object-fit: cover;
@@ -379,10 +379,10 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
   display: inline-block; font-size: 14px; color: var(--muted);
   margin-bottom: 4px;
 }
-.info-list { padding: 0; margin: 8px 0 0; list-style: none; }
+.info-list { padding: 0; margin: 12px 0 0; list-style: none; }
 .info-list li {
-  display: flex; padding: 14px 0;
-  border-bottom: 1px solid var(--line);
+  display: flex; padding: 16px 0;
+  border-bottom: 0.5px solid #eee;
   font-size: 15px;
 }
 .info-list li:last-child { border-bottom: none; }
@@ -396,7 +396,7 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
 
 .action-buttons {
   display: flex; gap: 10px; flex-wrap: wrap;
-  margin-top: 24px;
+  margin-top: 32px;
 }
 .action-btn {
   display: inline-flex; align-items: center; gap: 8px;
@@ -412,6 +412,8 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
 }
 .action-btn.primary {
   background: var(--brand); color: #fff; border-color: var(--brand);
+  border-radius: 8px;
+  padding: 12px 24px;
 }
 .action-btn.primary:hover {
   background: var(--brand-dark); border-color: var(--brand-dark);
@@ -438,7 +440,7 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
 .detail-left {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
   align-self: start;
 }
 
@@ -447,24 +449,31 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
   background: #fff;
   border: 0.5px solid var(--line);
   border-radius: var(--radius);
-  padding: 16px 20px;
+  padding: 24px 28px;
   box-shadow: var(--shadow-sm);
   text-align: center;
 }
 .review-label {
   font-size: 13px;
-  color: #A32D2D;
+  color: var(--brand);
   font-weight: 700;
   letter-spacing: 0.03em;
-  margin-bottom: 8px;
+  margin-bottom: 0;
+}
+.review-divider {
+  width: 24px;
+  height: 1px;
+  background: #ddd;
+  margin: 8px auto;
 }
 .review-text {
   font-family: "Noto Serif KR", Georgia, serif;
-  font-size: 16px;
+  font-size: 15px;
   font-style: italic;
   color: #1A1A1A;
   font-weight: 400;
-  line-height: 1.7;
+  line-height: 1.6;
+  text-align: center;
 }
 
 /* ===== Store hero card (상세페이지 카드) ===== */
@@ -476,43 +485,54 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
   flex-direction: column;
 }
 .store-card-red {
-  background: #A32D2D;
-  padding: 20px;
+  background: var(--brand);
+  padding: 22px 22px 20px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-height: 180px;
+  min-height: 200px;
 }
 .sc-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+.sc-top-info {
   display: flex;
   flex-direction: column;
   gap: 3px;
 }
 .sc-district {
-  font-size: 18px;
+  font-size: 17px;
   color: #fff;
   font-weight: 600;
 }
 .sc-rank-cat {
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.65);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
   font-weight: 400;
 }
 .sc-name {
   font-family: "Black Han Sans", sans-serif;
-  font-size: 48px;
+  font-size: 56px;
   color: #fff;
   font-weight: 400;
-  line-height: 1.15;
+  line-height: 1.1;
   word-break: keep-all;
   text-align: center;
+  margin: 14px 0 6px;
 }
 .sc-pick {
   font-size: 10px;
-  color: rgba(255, 255, 255, 0.6);
-  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.1em;
   font-weight: 500;
-  text-align: center;
+  background: rgba(255, 255, 255, 0.18);
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .store-card-white {
   background: #fff;
@@ -521,6 +541,26 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
   flex-direction: column;
   justify-content: center;
 }
+
+/* 레드카드 내 태그 */
+.store-card-red .sc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+}
+.store-card-red .sc-tag {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* 화이트카드 내 태그 (구형 stores 페이지 호환) */
 .sc-tags {
   display: flex;
   flex-wrap: wrap;
@@ -544,7 +584,7 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
 }
 
 .detail-desc {
-  margin-top: 36px; padding-top: 32px;
+  margin-top: 40px; padding-top: 36px;
   border-top: 1px solid var(--line);
   font-size: 15px; color: #333;
   white-space: pre-wrap;
@@ -553,13 +593,13 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
 
 /* ===== 방문 후기 섹션 (상세페이지) ===== */
 .user-reviews-section {
-  margin-top: 48px;
-  padding-top: 40px;
+  margin-top: 56px;
+  padding-top: 44px;
   border-top: 1px solid var(--line);
 }
 .user-reviews-title {
   font-size: 22px; font-weight: 800;
-  margin: 0 0 24px;
+  margin: 0 0 28px;
   letter-spacing: -0.03em;
 }
 
@@ -630,7 +670,7 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
 }
 .review-write-top input:focus {
   outline: none; border-color: var(--brand);
-  box-shadow: 0 0 0 3px rgba(163, 45, 45, 0.1);
+  box-shadow: 0 0 0 3px rgba(176, 40, 40, 0.1);
 }
 .review-write-form textarea {
   width: 100%; resize: vertical;
@@ -642,7 +682,7 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
 }
 .review-write-form textarea:focus {
   outline: none; border-color: var(--brand);
-  box-shadow: 0 0 0 3px rgba(163, 45, 45, 0.1);
+  box-shadow: 0 0 0 3px rgba(176, 40, 40, 0.1);
 }
 .review-write-bottom {
   display: flex; align-items: center; justify-content: space-between;
@@ -716,7 +756,7 @@ h1, h2, h3, h4 { font-weight: 700; letter-spacing: -0.02em; }
 }
 .admin-reply-form textarea:focus {
   outline: none; border-color: var(--brand);
-  box-shadow: 0 0 0 3px rgba(163, 45, 45, 0.1);
+  box-shadow: 0 0 0 3px rgba(176, 40, 40, 0.1);
 }
 .admin-reply-form-btns { display: flex; gap: 8px; flex-wrap: wrap; }
 
@@ -757,7 +797,7 @@ input[type="url"], select, textarea {
 }
 input:focus, select:focus, textarea:focus {
   outline: none; border-color: var(--brand);
-  box-shadow: 0 0 0 3px rgba(193, 89, 60, 0.12);
+  box-shadow: 0 0 0 3px rgba(176, 40, 40, 0.12);
 }
 
 .btn {
@@ -767,7 +807,7 @@ input:focus, select:focus, textarea:focus {
   font-size: 14px; font-weight: 500;
   transition: all 0.18s ease;
 }
-.btn:hover { background: var(--brand-soft); border-color: rgba(193, 89, 60, 0.3); }
+.btn:hover { background: var(--brand-soft); border-color: rgba(176, 40, 40, 0.3); }
 .btn.primary {
   background: var(--brand); color: #fff; border-color: var(--brand);
 }
@@ -879,7 +919,7 @@ input:focus, select:focus, textarea:focus {
 }
 .hours-t:focus {
   outline: none; border-color: var(--brand);
-  box-shadow: 0 0 0 2px rgba(163, 45, 45, 0.1);
+  box-shadow: 0 0 0 2px rgba(176, 40, 40, 0.1);
 }
 .hours-closed-chk { display: block; margin: 0 auto; cursor: pointer; width: 16px; height: 16px; }
 .hours-allday-chk { display: block; margin: 0 auto; cursor: pointer; width: 16px; height: 16px; }
@@ -934,9 +974,10 @@ input:focus, select:focus, textarea:focus {
   .category-grid.two-col { grid-template-columns: 1fr; }
   .category-card { padding: 22px; }
 
+  .detail-page { padding: 40px 18px 80px; }
   .detail-info h1 { font-size: 26px; }
-  .sc-name { font-size: 34px; }
-  .store-card-red { min-height: 150px; }
+  .sc-name { font-size: 40px; }
+  .store-card-red { min-height: 160px; }
   .hours-table { overflow-x: auto; }
   .hours-trow { grid-template-columns: 2rem repeat(5, minmax(60px, 1fr)) 2.5rem 2.5rem; }
   .info-label { flex: 0 0 90px; font-size: 13px; white-space: nowrap; }

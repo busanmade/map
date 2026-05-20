@@ -110,7 +110,7 @@ function storePageHTML(store) {
   <link rel="canonical" href="${SITE_URL}/stores/${store.id}.html"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;600;700;800&family=Noto+Serif+KR:wght@400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="../css/style.css"/>
 </head>
 <body>
@@ -132,15 +132,17 @@ function storePageHTML(store) {
           <div class="store-card">
             <div class="store-card-red">
               <div class="sc-top">
-                ${district?`<span class="sc-district">${esc(district)}</span>`:''}
-                <span class="sc-rank-cat">${esc(rankStr)} · ${esc(store.category||GROUP_LABELS[store.group]||'')}</span>
+                <div class="sc-top-info">
+                  ${district?`<span class="sc-district">${esc(district)}</span>`:''}
+                  <span class="sc-rank-cat">${esc(rankStr)} · ${esc(store.category||GROUP_LABELS[store.group]||'')}</span>
+                </div>
+                <span class="sc-pick">BUSANMADE PICK</span>
               </div>
               <div class="sc-name">${esc(store.name)}</div>
-              <span class="sc-pick">BUSANMADE PICK</span>
+              ${menuTags?`<div class="sc-tags">${menuTags}</div>`:''}
             </div>
-            ${menuTags?`<div class="store-card-white"><div class="sc-tags">${menuTags}</div></div>`:''}
           </div>
-          ${store.review?`<div class="review-card"><div class="review-label">busanmade의 한줄평</div><div class="review-text">${esc(store.review)}</div></div>`:''}
+          ${store.review?`<div class="review-card"><div class="review-label">busanmade의 한줄평</div><div class="review-divider"></div><div class="review-text">${esc(store.review)}</div></div>`:''}
         </div>
         <div class="detail-info">
           <span class="detail-rank-badge">${esc(GROUP_LABELS[store.group]||'')} · ${esc(store.category||'')} ${store.rank}위</span>

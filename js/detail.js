@@ -89,13 +89,13 @@
     <div class="store-card">
       <div class="store-card-red">
         <div class="sc-top">
-          <span class="sc-district">${district ? escapeHTML(district) : ""}</span>
-          <span class="sc-rank-cat">${escapeHTML(rankStr)} · ${catLabel}</span>
+          <div class="sc-top-info">
+            <span class="sc-district">${district ? escapeHTML(district) : ""}</span>
+            <span class="sc-rank-cat">${escapeHTML(rankStr)} · ${catLabel}</span>
+          </div>
+          <span class="sc-pick">BUSANMADE PICK</span>
         </div>
         <div class="sc-name">${escapeHTML(store.name)}</div>
-        <span class="sc-pick">BUSANMADE PICK</span>
-      </div>
-      <div class="store-card-white">
         ${menuTags ? `<div class="sc-tags">${menuTags}</div>` : ""}
       </div>
     </div>
@@ -104,6 +104,7 @@
   const reviewCard = store.review ? `
     <div class="review-card">
       <div class="review-label">busanmade의 한줄평</div>
+      <div class="review-divider"></div>
       <div class="review-text">${escapeHTML(store.review)}</div>
     </div>
   ` : "";
