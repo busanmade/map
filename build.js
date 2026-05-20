@@ -126,7 +126,7 @@ function storePageHTML(store) {
 
   <main class="container detail-page" id="detail-root">
     <a href="../index.html" class="back-link">← 목록으로</a>
-    <div id="detail-content">
+    <div id="detail-content" style="opacity:0">
       <div class="detail-hero">
         <div class="detail-left">
           <div class="store-card">
